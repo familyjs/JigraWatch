@@ -1,0 +1,84 @@
+{
+  "name": "@jigra/watch",
+  "version": "0.1.9",
+  "license": "MIT",
+  "description": "Provide Watch interfaces and communication",
+  "main": "dist/plugin.cjs.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "unpkg": "dist/plugin.js",
+  "files": [
+    "android/src/main/",
+    "android/build.gradle",
+    "dist/",
+    "ios/Plugin/",
+    "JigraWatch.podspec",
+    "JigWatch-Watch-SPM"
+  ],
+  "author": "Family Team",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/familyjs/JigraWatch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/familyjs/jigrawatch/issues"
+  },
+  "keywords": [
+    "jigra",
+    "plugin",
+    "native"
+  ],
+  "scripts": {
+    "verify": "pnpm run verify:ios && pnpm run verify:android && pnpm run verify:web",
+    "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin -destination generic/platform=iOS && cd ..",
+    "verify:android": "cd android && ./gradlew clean build test && cd ..",
+    "verify:web": "pnpm run build",
+    "lint": "pnpm run eslint . --ext ts && pnpm run prettier \"**/*.{css,html,ts,js,java}\" --check && pnpm run swiftlint -- lint",
+    "fmt": "pnpm run eslint . --ext ts --fix && pnpm run prettier \"**/*.{css,html,ts,js,java}\" --write && pnpm run swiftlint -- --fix --format",
+    "eslint": "eslint",
+    "prettier": "prettier",
+    "swiftlint": "node-swiftlint",
+    "docgen": "docgen --api WatchPlugin --output-readme README.md --output-json dist/docs.json",
+    "build": "pnpm run clean && pnpm run docgen && tsc && rollup -c rollup.config.js",
+    "clean": "rimraf ./dist",
+    "watch": "tsc --watch",
+    "prepublishOnly": "pnpm run build"
+  },
+  "devDependencies": {
+    "@familyjs/eslint-config": "^0.3.0",
+    "@familyjs/prettier-config": "^3.1.0",
+    "@familyjs/swiftlint": "^1.0.2",
+    "@familyjs/swiftlint-config": "^1.1.4",
+    "@jigra/android": "^5.7.0",
+    "@jigra/cli": "^5.7.0",
+    "@jigra/core": "^5.7.0",
+    "@jigra/docgen": "^0.2.1",
+    "@jigra/ios": "^5.7.0",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "eslint": "^8.44.0",
+    "eslint-config-standard-with-typescript": "^36.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "prettier": "^2.8.8",
+    "prettier-plugin-java": "~2.2.0",
+    "rimraf": "^5.0.1",
+    "rollup": "^2.78.1",
+    "typescript": "~5.1.6"
+  },
+  "peerDependencies": {
+    "@jigra/core": "^5.0.0"
+  },
+  "swiftlint": "@familyjs/swiftlint-config",
+  "eslintConfig": {
+    "extends": "@familyjs/eslint-config/recommended"
+  },
+  "jigra": {
+    "ios": {
+      "src": "ios"
+    },
+    "android": {
+      "src": "android"
+    }
+  }
+}
