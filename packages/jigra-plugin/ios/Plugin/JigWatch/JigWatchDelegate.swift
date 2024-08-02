@@ -6,7 +6,7 @@ import WatchConnectivity
 import JigraBackgroundRunner
 
 public class JigWatchSessionDelegate: NSObject, WCSessionDelegate {
-    var WATCH_UI = ""
+    var WATCH_UI = "" // swiftlint:disable:this identifier_name
 
     public static var shared = JigWatchSessionDelegate()
 
