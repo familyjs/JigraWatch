@@ -1,6 +1,6 @@
 {
   "name": "@jigra/watch",
-  "version": "0.1.9",
+  "version": "0.1.9-0",
   "license": "MIT",
   "description": "Provide Watch interfaces and communication",
   "main": "dist/plugin.cjs.js",
