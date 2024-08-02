@@ -31,26 +31,26 @@ class WatchViewModel: NSObject, WCSessionDelegate, ObservableObject {
         // apple docs say this won't work on simulator
 
         if WatchViewModel.shared.watchUI.isEmpty {
-            let _ = session.transferUserInfo(REQUESTUI)
+            _ = session.transferUserInfo(REQUESTUI)
         }
     }
 
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+    func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         handlePhoneMessage(message)
     }
 
-    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
         handlePhoneMessage(applicationContext)
     }
 
-    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any] = [:]) {
         handlePhoneMessage(userInfo)
     }
 
     // required protocol stubs?
-    //func sessionDidBecomeInactive(_ session: WCSession) {}
+    // func sessionDidBecomeInactive(_ session: WCSession) {}
 
-    //func sessionDidDeactivate(_ session: WCSession) {}
+    // func sessionDidDeactivate(_ session: WCSession) {}
 
     func handlePhoneMessage(_ userInfo: [String: Any]) {
         DispatchQueue.main.async {

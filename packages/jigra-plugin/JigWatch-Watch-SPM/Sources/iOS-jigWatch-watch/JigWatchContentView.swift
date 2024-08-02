@@ -11,7 +11,7 @@ struct JigWatchContentView: View {
         VStack {
             if model.watchUI == "" {
                 Button(action: {
-                    WatchViewModel.shared.session.sendMessage(REQUESTUI, replyHandler: nil) { error in
+                    WatchViewModel.shared.session.sendMessage(REQUESTUI, replyHandler: nil) { _ in
                         print("UI Delivery failed")
                     }
                 }) {

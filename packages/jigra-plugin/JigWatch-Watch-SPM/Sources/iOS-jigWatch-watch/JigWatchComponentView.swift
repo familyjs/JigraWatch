@@ -5,7 +5,7 @@
 import SwiftUI
 import WatchConnectivity
 
-struct JigWatchComponentView : View, Identifiable {
+struct JigWatchComponentView: View, Identifiable {
     var id: UUID
 
     var controlType: String
@@ -34,7 +34,7 @@ struct JigWatchComponentView : View, Identifiable {
                 .foregroundColor(.white)
         } else if controlType == "Button" {
             Button(
-                action: { WCSession.default.transferUserInfo([COMMAND_KEY:splitParams[1]]) },
+                action: { WCSession.default.transferUserInfo([COMMAND_KEY: splitParams[1]]) },
                 label: {
                     JigWatchText(String(splitParams[0]), viewModel)
                 }
@@ -42,4 +42,3 @@ struct JigWatchComponentView : View, Identifiable {
         }
     }
 }
-

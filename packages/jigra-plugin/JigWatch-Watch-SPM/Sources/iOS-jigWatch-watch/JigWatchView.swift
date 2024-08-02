@@ -28,7 +28,7 @@ struct JigWatchView: View {
                 thisView
             }
         }
-        .onAppear() {
+        .onAppear {
 
         }
     }

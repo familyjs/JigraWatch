@@ -5,7 +5,7 @@
 import WatchConnectivity
 import JigraBackgroundRunner
 
-public class JigWatchSessionDelegate : NSObject, WCSessionDelegate {
+public class JigWatchSessionDelegate: NSObject, WCSessionDelegate {
     var WATCH_UI = ""
 
     public static var shared = JigWatchSessionDelegate()
@@ -25,7 +25,7 @@ public class JigWatchSessionDelegate : NSObject, WCSessionDelegate {
         session.activate()
     }
 
-    public func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+    public func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         var args: [String: Any] = [:]
         args["message"] = message
 
@@ -42,7 +42,7 @@ public class JigWatchSessionDelegate : NSObject, WCSessionDelegate {
         handleWatchMessage(applicationContext)
     }
 
-    public func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+    public func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any] = [:]) {
         // print("PHONE got didReceiveUserInfo: \(userInfo)")
         var args: [String: Any] = [:]
         args["userInfo"] = userInfo
@@ -58,12 +58,12 @@ public class JigWatchSessionDelegate : NSObject, WCSessionDelegate {
 
     func updateViewData(_ data: [String: String]) {
         DispatchQueue.main.async {
-            let _ = WCSession.default.transferUserInfo([DATA_KEY: data])
+            _ = WCSession.default.transferUserInfo([DATA_KEY: data])
         }
     }
 
     func sendUI() {
-        let _ = WCSession.default.transferUserInfo([UI_KEY : WATCH_UI])
+        _ = WCSession.default.transferUserInfo([UI_KEY: WATCH_UI])
     }
 
     func commandToJS(_ command: String) {

@@ -8,7 +8,7 @@ let package = Package(
     products: [
         .library(
             name: "iOS-jigWatch-watch",
-            targets: ["iOS-jigWatch-watch"]),
+            targets: ["iOS-jigWatch-watch"])
     ],
     dependencies: [
     ],
@@ -18,6 +18,6 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "iOS-jigWatch-watchTests",
-            dependencies: ["iOS-jigWatch-watch"]),
+            dependencies: ["iOS-jigWatch-watch"])
     ]
 )
